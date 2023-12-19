@@ -19,28 +19,32 @@
 typedef struct stack_s
 {
 	int n;
-	struct stack_s *next;
 	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
 /**
- * struct bus_s - variables files ,line content, args etc
+ * struct bus_s - variables -args, file, line content
  * @arg: value
- * @lifi: flag change stack queue
- * @content: line content
  * @file: pointer to monty file
+ * @content: line content
+ * @lifi: flag change stack <-> queue
+ * Description: carries values through the program
  */
 typedef struct bus_s
 {
-	int lifi;
 	char *arg;
-	char *content;
 	FILE *file;
+	char *content;
+	int lifi;
 }  bus_t;
 extern bus_t bus;
 /**
- * struct instruction_s - the opcode and the function
- * @opcode: D opcode
- * @f: D function
+ * struct instruction_s - opcode and its function
+ * @opcode: the opcode
+ * @f: function to handle the opcode
+ *
+ * Description: opcode and its function
+ * for stack, queues, LIFO, FIFO Holberton project
  */
 typedef struct instruction_s
 {
@@ -71,6 +75,4 @@ void addnode(stack_t **head, int n);
 void addqueue(stack_t **head, int n);
 void f_queue(stack_t **head, unsigned int counter);
 void f_stack(stack_t **head, unsigned int counter);
-
 #endif
-

@@ -22,16 +22,14 @@ int main(int argc, char *argv[]) {
         exit(EXIT_FAILURE);
     }
 
-    while (read_line != -1) { // Check for EOF or error (-1)
-        content = NULL;
-        read_line = getline(&content, &size, file);
-
-        if (read_line != -1 && read_line != 0) { // Process only if read is successful
+    while ((read_line = getline(&content, &size, file)) != -1) {
+        if (read_line > 0) {
             bus.content = content;
             counter++;
             execute(content, &stack, counter, file);
         }
         free(content); // Free allocated memory
+        content = NULL; // Reset pointer
     }
 
     free_stack(stack); // Free remaining stack elements
